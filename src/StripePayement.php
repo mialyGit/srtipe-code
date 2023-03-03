@@ -13,37 +13,39 @@ class StripePayement {
     }
 
     public function startPayement($amount){
-
+        $application_fee_amount = 3000;
         //Create if not exist in base
-        $medecin = \Stripe\Customer::create([
-            'name' => 'AVOTRINIAINA Mialison',
-            'email' => 'mialison@example.com',
-            'source' => 'tok_visa'
-        ]);
-        
-        $medecinId = $medecin->id;
+        // $medecin = \Stripe\Customer::create([
+        //     'name' => 'AVOTRINIAINA Mialison',
+        //     'email' => 'mialison@example.com',
+        //     'source' => 'tok_visa'
+        // ]);
 
-        $lecteur = \Stripe\Account::create([
-            'type' => 'standard',
-            'country' => 'fr',
-            'email' => 'kouli02@example.com',
-            'external_account' => [
-                'object' => 'bank_account',
-                'country' => 'FR',
-                'currency' => 'eur',
-                'account_number' => "FR1420041010050500013M02606",
-            ],
-            'settings' => [
-                'payouts' => [
-                'schedule' => [
-                    'interval' => 'weekly',
-                    'weekly_anchor' => 'tuesday'
-                    ],
-                ],
-            ],
-        ]);
+        // $medecinId = $medecin->id;
+        $medecinId = "cus_NSOGAXs2eYs6jP";
 
-        $lecteurId = $lecteur->id;
+        // $lecteur = \Stripe\Account::create([
+        //     'type' => 'standard',
+        //     'country' => 'fr',
+        //     'email' => 'kouli02@example.com',
+        //     'external_account' => [
+        //         'object' => 'bank_account',
+        //         'country' => 'FR',
+        //         'currency' => 'eur',
+        //         'account_number' => "FR1420041010050500013M02606",
+        //     ],
+        //     'settings' => [
+        //         'payouts' => [
+        //         'schedule' => [
+        //             'interval' => 'weekly',
+        //             'weekly_anchor' => 'tuesday'
+        //             ],
+        //         ],
+        //     ],
+        // ]);
+
+        // $lecteurId = $lecteur->id;
+        $lecteurId = "acct_1MhTTkBGF7x5v7qp";
 
         $session = \Stripe\Checkout\Session::create([
             'customer' => $medecinId,
@@ -67,7 +69,7 @@ class StripePayement {
                 'cartId' => '1'
             ],
             'payment_intent_data' => [
-                'application_fee_amount' => 300,
+                'application_fee_amount' => $application_fee_amount,
                 'transfer_data' => [
                     'destination' => $lecteurId
                 ],
