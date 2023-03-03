@@ -19,7 +19,7 @@ $token = $stripe->tokens->create([
     ],
 ]);
 
-$accountId = 'acct_1MhSy5B0IcF9UdBe';
+$accountId = 'acct_1MhY4qPaaFz0LzYL';
 
 $account = $stripe->accounts->retrieve(
     $accountId
