@@ -1,0 +1,17 @@
+{
+    "name": "chikara/stripe-code",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ML",
+            "email": "ml@gmail.com"
+        }
+    ],
+    "require": {
+        "stripe/stripe-php": "^10.6"
+    }
+}
